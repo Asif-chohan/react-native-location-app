@@ -35,8 +35,11 @@ export default class SampleApp extends Component {
     Geocoder.geocodePosition(NY)
       .then(res => {
         console.log("====================response================");
-        console.log(res);
+        console.log(res[0].formattedAddress);
         console.log("====================================");
+        this.setState({
+          locationShower: res[0].formattedAddress
+        })
       })
       .catch(err => {
         console.log("=====err======");
@@ -99,7 +102,7 @@ export default class SampleApp extends Component {
     return (
       <View>
         <Text>Geolocation: {this.state.initialPosition}</Text>
-        <TouchableOpacity onPress={this.locationHandler}>
+        <TouchableOpacity onPress={this.locationHandler} style={{backgroundColor: "lightgray", height: 50, width: "70%",alignSelf: "center", borderRadius: 10, paddingTop:15, alignItems: "center"}}>
           <Text>Get location</Text>
         </TouchableOpacity>
         <Text>{this.state.locationShower}</Text>
